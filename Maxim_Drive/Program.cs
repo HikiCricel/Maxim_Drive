@@ -1,97 +1,98 @@
-﻿using Maxim_Drive.Driver;
-using Maxim_Drive.Map;
+﻿using Maxim_Drive.DriverModel;
+using Maxim_Drive.MapModel;
+using Maxim_Drive.OrderModel;
 using System;
+using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Threading.Channels;
 
 namespace Maxim_Drive
 {
     public class Functions
     {
-        public void Map()
+        public void DrawMap(int mapWidth, int mapLenght, (int x, int y) oCoord, Driver[] drivers)
         {
-            Console.Write("Enter X:");
-            int x = int.Parse(Console.ReadLine());
-            Console.Write("Enter Y:");
-            int y = int.Parse(Console.ReadLine());
-            if (x <= 0 || y <= 0)
-            {
-                Console.WriteLine("Wrong coordinates");
-                return;
-            }
-            var map_b = new DefaultMap(x, y);
+            var map_b = new Map(mapLenght, mapWidth);
             string[,] map = map_b.BuildMap();
+            map[oCoord.x, oCoord.y] = "O";
+            foreach(var d in drivers)
+            {
+                map[d.X, d.Y] = $"{d.Id}";
+            }
             Console.WriteLine("Result:");
-            for (int i = 0; i < map_b.Y; i++)
+            for (int i = 0; i < map_b.X; i++)
             {
                 Console.Write('|');
-                for (int j = 0; j < map_b.X; j++)
+                for (int j = 0; j < map_b.Y; j++)
                 {
-                    Console.Write($"{map[i, j],3}");
+                    Console.Write($"{map[j, i],3}");
                 }
                 Console.Write('|');
                 Console.WriteLine();
             }
+
+
             return;
         }
-
-        public void Drivers()
-        {
-            DefaultDriver.Reset();
-            Console.Write("Enter driver quantity: ");
-            int n = int.Parse(Console.ReadLine());
-            if (n <= 0)
-            {
-                Console.WriteLine("Wrong number");
-                return;
-            }
-
-            var drivers = new DefaultDriver[n];
-
-            for (int i = 0; i < n; i++)
-            {
-                int x, y;
-                bool flag;
-
-                do
-                {
-                    Console.Write("Enter X: ");
-                    flag = int.TryParse(Console.ReadLine(), out x);
-                    if (!flag) Console.WriteLine("Wrong X. Try again");
-
-                } while (!flag);
-
-                do
-                {
-                    Console.Write("Enter Y: ");
-                    flag = int.TryParse(Console.ReadLine(), out y);
-                    if (!flag) Console.WriteLine("Wrong Y. Try again");
-
-                } while (!flag);
-
-                try
-                {
-                    var driver = new DefaultDriver();
-                    driver.SetCoordinates(x, y);
-                    drivers[i] = driver;
-                    Console.WriteLine($"Driver {driver.Id}: ({x}, {y})");
-                }
-                catch (InvalidOperationException ex)
-                {
-                    Console.WriteLine($"Error: {ex.Message}");
-                    i--;
-                }
-            }
-        }
-
     }
     class Program
     {
         public static void Main()
         {
             var f = new Functions();
-            f.Map();
-            f.Drivers();
+            Console.Write("Введите длину:");
+            int mapWidth = int.Parse(Console.ReadLine());
+            Console.Write("Введите ширину:");
+            int mapLenght = int.Parse(Console.ReadLine());
+            if (mapWidth <= 0 || mapLenght <= 0)
+            {
+                Console.WriteLine("Wrong coordinates");
+                return;
+            }
+
+            Console.Write("Enter driver quantity: ");
+            int n = int.Parse(Console.ReadLine());
+            if (n <= 0 || n >= (mapLenght*mapWidth))
+            {
+                Console.WriteLine("Wrong number");
+                return;
+            }
+
+            Driver[] drivers = new Driver[n];
+            var uniq = new HashSet<(int x, int y)>();
+
+            var random = new Random();
+
+            int yOrd = random.Next(0, mapLenght);
+            int xOrd = random.Next(0, mapWidth);
+            var order = new Order(1, xOrd, yOrd);
+            var oCoord = (xOrd, yOrd);
+            uniq.Add(oCoord);
+
+            for (int i = 0; i < n; i++)
+            {
+                int yCoord = random.Next(0, mapLenght);
+                int xCoord = random.Next(0, mapWidth);
+
+                var coord = (xCoord, yCoord);
+
+                if (uniq.Contains(coord))
+                {
+                    i--;
+                }
+                else
+                {
+                    uniq.Add(coord);
+                    drivers[i] = new Driver(i, xCoord, yCoord);
+                }
+            }
+            foreach (var d in uniq)
+            {
+                Console.WriteLine($"{d}");
+            }
+            Console.WriteLine($"{order.X},  {order.Y}");
+            f.DrawMap(mapWidth, mapLenght, oCoord, drivers);
         }
     }
 
