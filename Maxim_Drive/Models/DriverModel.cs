@@ -16,5 +16,17 @@ namespace Maxim_Drive.DriverModel
             X = x;
             Y = y;
         }
+
+        public double GetDistanceTo(int x, int y)
+        {
+            int dx = this.X - x;
+            int dy = this.Y - y;
+            return Math.Sqrt(dx * dx + dy * dy);
+        }
+
+        public double GetDistanceTo(OrderModel.Order order)
+        {
+            return GetDistanceTo(order.X, order.Y);
+        }
     }
 }

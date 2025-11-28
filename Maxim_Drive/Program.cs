@@ -1,6 +1,7 @@
 ﻿using Maxim_Drive.DriverModel;
 using Maxim_Drive.MapModel;
 using Maxim_Drive.OrderModel;
+using Maxim_Drive.SortModel;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +16,8 @@ namespace Maxim_Drive
         {
             var map_b = new Map(mapLenght, mapWidth);
             string[,] map = map_b.BuildMap();
-            map[oCoord.x, oCoord.y] = "O";
-            foreach(var d in drivers)
+            map[oCoord.x, oCoord.y] = "@";
+            foreach (var d in drivers)
             {
                 map[d.X, d.Y] = $"{d.Id}";
             }
@@ -53,7 +54,7 @@ namespace Maxim_Drive
 
             Console.Write("Enter driver quantity: ");
             int n = int.Parse(Console.ReadLine());
-            if (n <= 0 || n >= (mapLenght*mapWidth))
+            if (n <= 0 || n >= (mapLenght * mapWidth))
             {
                 Console.WriteLine("Wrong number");
                 return;
@@ -93,7 +94,10 @@ namespace Maxim_Drive
             }
             Console.WriteLine($"{order.X},  {order.Y}");
             f.DrawMap(mapWidth, mapLenght, oCoord, drivers);
+            SortAlgotithms.BubbleSort(drivers, order);
+            Driver[] copyDrivers = (Driver[])drivers.Clone();
+            SortAlgotithms.QuickSort(copyDrivers, order);
+            SortAlgotithms.InsertionSort(drivers, order);
         }
     }
-
 }
