@@ -8,6 +8,14 @@ namespace Maxim_Drive.OrderModel
 
         public Order(int id, int x, int y)
         {
+            if (x < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(x), $"Enter positive coordinates");
+            }
+            if (y < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(y), $"Enter positive coordinates");
+            }
             Id = id;
             X = x;
             Y = y;

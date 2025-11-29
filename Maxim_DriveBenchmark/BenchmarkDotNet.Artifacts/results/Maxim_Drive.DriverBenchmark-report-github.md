@@ -11,12 +11,12 @@ Job=.NET 10.0  Runtime=.NET 10.0
 ```
 | Method                 | DriverCount | Mean         | Error       | StdDev      | Gen0    | Allocated |
 |----------------------- |------------ |-------------:|------------:|------------:|--------:|----------:|
-| InsertionSortBenchmark | 100         |     547.6 μs |     3.66 μs |     2.86 μs |       - |   1.12 KB |
-| QuickSortBenchmark     | 100         |     547.9 μs |     6.50 μs |     5.76 μs |       - |   1.12 KB |
-| QuickSortBenchmark     | 1000        |     556.6 μs |     9.13 μs |     8.09 μs |  0.9766 |   8.15 KB |
-| BubbleSortBenchmark    | 100         |     562.3 μs |     8.87 μs |     8.29 μs |       - |   1.12 KB |
-| InsertionSortBenchmark | 1000        |     598.7 μs |     7.43 μs |     6.59 μs |  0.9766 |   8.15 KB |
-| QuickSortBenchmark     | 10000       |   1,147.6 μs |     8.27 μs |     7.73 μs | 11.7188 |   78.5 KB |
-| BubbleSortBenchmark    | 1000        |   2,290.5 μs |    24.57 μs |    22.98 μs |       - |   8.15 KB |
-| InsertionSortBenchmark | 10000       |  42,493.0 μs |   297.35 μs |   278.14 μs |       - |  78.48 KB |
-| BubbleSortBenchmark    | 10000       | 267,435.8 μs | 2,707.24 μs | 2,532.36 μs |       - |  78.48 KB |
+| QuickSortBenchmark     | 100         |     534.4 μs |     4.17 μs |     3.26 μs |       - |   1.13 KB |
+| InsertionSortBenchmark | 100         |     541.6 μs |     9.01 μs |    13.21 μs |       - |   1.15 KB |
+| QuickSortBenchmark     | 1000        |     544.1 μs |     5.58 μs |     4.35 μs |  0.9766 |   8.19 KB |
+| BubbleSortBenchmark    | 100         |     548.1 μs |    10.88 μs |    11.65 μs |       - |   1.15 KB |
+| InsertionSortBenchmark | 1000        |     580.5 μs |     8.53 μs |     7.12 μs |  0.9766 |   8.19 KB |
+| QuickSortBenchmark     | 10000       |   1,206.2 μs |     9.90 μs |     9.26 μs | 11.7188 |   78.5 KB |
+| BubbleSortBenchmark    | 1000        |   2,136.2 μs |    25.22 μs |    23.59 μs |       - |   8.15 KB |
+| InsertionSortBenchmark | 10000       |  42,180.8 μs |   321.46 μs |   300.69 μs |       - |   78.5 KB |
+| BubbleSortBenchmark    | 10000       | 308,291.7 μs | 1,658.90 μs | 1,470.57 μs |       - |   78.5 KB |

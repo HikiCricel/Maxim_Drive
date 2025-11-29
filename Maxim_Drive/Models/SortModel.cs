@@ -20,7 +20,7 @@ namespace Maxim_Drive.SortModel
                 }
             }
             Console.WriteLine("Top 5 drivers Bubble:");
-            for (int i = 0; i < dris.Length; i++)
+            for (int i = 0; (i < dris.Length) && (i < 5); i++)
             {
                 Console.WriteLine($"N{i+1} - {dris[i].Id}-id: ({dris[i].X}; {dris[i].Y})");
             }
@@ -30,7 +30,7 @@ namespace Maxim_Drive.SortModel
         {
             QuickSortAlg(dris, 0, dris.Length - 1, order);
             Console.WriteLine("Top 5 drivers Quick:");
-            for (int i = 0; i < dris.Length; i++)
+            for (int i = 0; (i < dris.Length) && (i < 5); i++)
             {
                 Console.WriteLine($"N{i+1} - {dris[i].Id}-id: ({dris[i].X}; {dris[i].Y})");
             }
@@ -94,7 +94,7 @@ namespace Maxim_Drive.SortModel
             }
 
             Console.WriteLine("Top 5 drivers Insertion:");
-            for (int i = 0; i < dris.Length; i++)
+            for (int i = 0; (i < dris.Length) && (i < 5); i++)
             {
                 Console.WriteLine($"N{i+1} - {dris[i].Id}-id: ({dris[i].X}; {dris[i].Y})");
             }

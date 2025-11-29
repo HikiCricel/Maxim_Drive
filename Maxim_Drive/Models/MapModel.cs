@@ -11,6 +11,14 @@ namespace Maxim_Drive.MapModel
 
         public Map(int x, int y)
         {
+            if (x < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(x), $"Enter positive coordinates");
+            }
+            if (y < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(y), $"Enter positive coordinates");
+            }
             X = x;
             Y = y;
         }

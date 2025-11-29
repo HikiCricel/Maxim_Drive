@@ -17,21 +17,27 @@ namespace Maxim_Drive
     [SimpleJob(RuntimeMoniker.Net10_0)]
     [MemoryDiagnoser]
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
-    
+
     public class DriverBenchmark
     {
         private Driver[] _drivers;
         private Order _order;
 
         [Params(100, 1000, 10000)]
-        public int DriverCount{get; set;}
+        public int DriverCount { get; set; }
 
         [GlobalSetup]
         public void Setup()
         {
             var random = new Random();
+            int mapLenght = 1000;
+            int mapWidth = 1000;
 
-            _order = new Order(0, random.Next(0, DriverCount), random.Next(0, DriverCount));
+            var map_b = new Map(mapLenght, mapWidth);
+            string[,] map = map_b.BuildMap();
+
+
+            _order = new Order(0, random.Next(0, mapLenght), random.Next(0, mapWidth));
             _drivers = new Driver[DriverCount];
 
             var occupiedCoords = new HashSet<(int x, int y)>();
@@ -42,8 +48,8 @@ namespace Maxim_Drive
                 int x, y;
                 do
                 {
-                    x = random.Next(0, 100);
-                    y = random.Next(0, 100);
+                    x = random.Next(0, mapWidth);
+                    y = random.Next(0, mapWidth);
                 } while (occupiedCoords.Contains((x, y)));
                 occupiedCoords.Add((x, y));
                 _drivers[i] = new Driver(i, x, y);
