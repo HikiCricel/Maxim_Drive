@@ -2,11 +2,7 @@
 using Maxim_Drive.MapModel;
 using Maxim_Drive.OrderModel;
 using Maxim_Drive.SortModel;
-using System;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Common;
-using System.Threading.Channels;
+using System.Reflection;
 
 namespace Maxim_Drive
 {
@@ -67,7 +63,7 @@ namespace Maxim_Drive
 
             int yOrd = random.Next(0, mapLenght);
             int xOrd = random.Next(0, mapWidth);
-            var order = new Order(1, xOrd, yOrd);
+            var order = new Order(0, xOrd, yOrd);
             var oCoord = (xOrd, yOrd);
             uniq.Add(oCoord);
 
@@ -94,10 +90,10 @@ namespace Maxim_Drive
             }
             Console.WriteLine($"{order.X},  {order.Y}");
             f.DrawMap(mapWidth, mapLenght, oCoord, drivers);
-            SortAlgotithms.BubbleSort(drivers, order);
+            SortAlgorithms.BubbleSort(drivers, order);
             Driver[] copyDrivers = (Driver[])drivers.Clone();
-            SortAlgotithms.QuickSort(copyDrivers, order);
-            SortAlgotithms.InsertionSort(drivers, order);
+            SortAlgorithms.QuickSort(copyDrivers, order);
+            SortAlgorithms.InsertionSort(drivers, order);
         }
     }
 }

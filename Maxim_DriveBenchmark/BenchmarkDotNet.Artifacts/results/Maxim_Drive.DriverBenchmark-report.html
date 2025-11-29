@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Maxim_Drive.DriverBenchmark-20251129-101858</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.6, Windows 11 (10.0.26200.7171)
+12th Gen Intel Core i5-12450H 2.00GHz, 1 CPU, 12 logical and 8 physical cores
+.NET SDK 10.0.100
+  [Host]    : .NET 10.0.0 (10.0.0, 10.0.25.52411), X64 RyuJIT x86-64-v3
+  .NET 10.0 : .NET 10.0.0 (10.0.0, 10.0.25.52411), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code>Job=.NET 10.0  Runtime=.NET 10.0  
+</code></pre>
+
+<table>
+<thead><tr><th>Method          </th><th>DriverCount</th><th>Mean  </th><th>Error</th><th>StdDev</th><th>Gen0</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>InsertionSortBenchmark</td><td>100</td><td>547.6 &mu;s</td><td>3.66 &mu;s</td><td>2.86 &mu;s</td><td>-</td><td>1.12 KB</td>
+</tr><tr><td>QuickSortBenchmark</td><td>100</td><td>547.9 &mu;s</td><td>6.50 &mu;s</td><td>5.76 &mu;s</td><td>-</td><td>1.12 KB</td>
+</tr><tr><td>QuickSortBenchmark</td><td>1000</td><td>556.6 &mu;s</td><td>9.13 &mu;s</td><td>8.09 &mu;s</td><td>0.9766</td><td>8.15 KB</td>
+</tr><tr><td>BubbleSortBenchmark</td><td>100</td><td>562.3 &mu;s</td><td>8.87 &mu;s</td><td>8.29 &mu;s</td><td>-</td><td>1.12 KB</td>
+</tr><tr><td>InsertionSortBenchmark</td><td>1000</td><td>598.7 &mu;s</td><td>7.43 &mu;s</td><td>6.59 &mu;s</td><td>0.9766</td><td>8.15 KB</td>
+</tr><tr><td>QuickSortBenchmark</td><td>10000</td><td>1,147.6 &mu;s</td><td>8.27 &mu;s</td><td>7.73 &mu;s</td><td>11.7188</td><td>78.5 KB</td>
+</tr><tr><td>BubbleSortBenchmark</td><td>1000</td><td>2,290.5 &mu;s</td><td>24.57 &mu;s</td><td>22.98 &mu;s</td><td>-</td><td>8.15 KB</td>
+</tr><tr><td>InsertionSortBenchmark</td><td>10000</td><td>42,493.0 &mu;s</td><td>297.35 &mu;s</td><td>278.14 &mu;s</td><td>-</td><td>78.48 KB</td>
+</tr><tr><td>BubbleSortBenchmark</td><td>10000</td><td>267,435.8 &mu;s</td><td>2,707.24 &mu;s</td><td>2,532.36 &mu;s</td><td>-</td><td>78.48 KB</td>
+</tr></tbody></table>
+</body>
+</html>
