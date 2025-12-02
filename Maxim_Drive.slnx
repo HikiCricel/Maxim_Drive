@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="Maxim_Drive/Maxim_Drive.csproj" />
+  <Project Path="Maxim_DriveBenchmark/Maxim_DriveBenchmark.csproj" />
+  <Project Path="Maxim_DriveNUnitTests/Maxim_DriveNUnitTests.csproj" />
 </Solution>
